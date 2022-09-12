@@ -1,23 +1,21 @@
 name: build redis cluster operator arm images.
 
-on: 
-  workflow_dispatch:
+on: [workflow_dispatch]
 
 jobs:
   build:
     name: build docker image
     runs-on: ubuntu-latest
     steps:
-    - name: checkout repo
-    - uses: actions/checkout@v2
-    #using the composite actions from https://github.com/TykTechnologies/actions
-    - name: build and push the docker image
-    - uses: TykTechnologies/actions@main
-      with:
-        dockerhub_username: ${{secrets.DOCKER_USERNAME}}
-        dockerhub_token: ${{secrets.DOCKER_PASSWORD}}
-        repository_name: "redis-cluster-operator"
-        dockerfile: Dockerfile
-        platforms: linux/arm64
+      - name: checkout repo
+      - uses: actions/checkout@v2
+      - name: build and push the docker image
+        uses: TykTechnologies/actions@main
+        with:
+          dockerhub_username: ${{secrets.DOCKER_USERNAME}}
+          dockerhub_token: ${{secrets.DOCKER_PASSWORD}}
+          repository_name: "redis-cluster-operator"
+          dockerfile: Dockerfile
+          platforms: linux/arm64
 
     
