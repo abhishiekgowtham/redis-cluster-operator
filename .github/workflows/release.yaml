@@ -1,6 +1,6 @@
 name: build redis cluster operator arm images.
 
-on: [workflow_dispatch]
+on: workflow_dispatch
 
 jobs:
   build:
@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
-        
+
       - name: login to docker
         uses: TykTechnologies/actions/docker-login@main
         with:
