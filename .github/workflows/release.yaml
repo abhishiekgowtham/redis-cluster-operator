@@ -11,7 +11,7 @@ jobs:
       - use: actions/checkout@v2
       #using the composite actions from https://github.com/TykTechnologies/actions
       - name: build and push the docker image
-        uses: TykTechnologies/actions@main
+      - uses: TykTechnologies/actions@main
         with:
           dockerhub_username: ${{secrets.DOCKER_USERNAME}}
           dockerhub_token: ${{secrets.DOCKER_PASSWORD}}
