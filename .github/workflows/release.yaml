@@ -8,7 +8,8 @@ jobs:
     name: build docker image
     runs-on: ubuntu-latest
     steps:
-      - use: actions/checkout@v2
+      - name: checkout repo
+      - uses: actions/checkout@v2
       #using the composite actions from https://github.com/TykTechnologies/actions
       - name: build and push the docker image
       - uses: TykTechnologies/actions@main
