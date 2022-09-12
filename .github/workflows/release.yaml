@@ -8,12 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
-      - uses: actions/checkout@v2
-      - name: build and push the docker image
-        uses: TykTechnologies/actions@main
+        uses: actions/checkout@v2
+        
+      - name: login to docker
+        uses: TykTechnologies/actions/docker-login@main
         with:
           dockerhub_username: ${{secrets.DOCKER_USERNAME}}
           dockerhub_token: ${{secrets.DOCKER_PASSWORD}}
+
+      - name: build and push the docker image
+        uses: TykTechnologies/actions/docker-build-push@main
+        with:
           repository_name: "redis-cluster-operator"
           dockerfile: Dockerfile
           platforms: linux/arm64
