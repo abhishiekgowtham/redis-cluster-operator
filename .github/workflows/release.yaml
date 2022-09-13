@@ -19,7 +19,7 @@ jobs:
       - name: build and push the docker image
         uses: TykTechnologies/actions/docker-build-push@main
         with:
-          repository_name: "redis-cluster-operator"
+          repository_name: "tykio/redis-cluster-operator"
           dockerfile: Dockerfile
           platforms: linux/arm64
 
