@@ -27,16 +27,16 @@ build() {
 
   if [ ! -f "rclone" ]; then
     # Download rclone
-    wget https://downloads.rclone.org/"${RCLONE_VER}"/rclone-"${RCLONE_VER}"-linux-amd64.zip
-    unzip rclone-"${RCLONE_VER}"-linux-amd64.zip
-    chmod +x rclone-"${RCLONE_VER}"-linux-amd64/rclone
-    mv rclone-"${RCLONE_VER}"-linux-amd64/rclone rclone
+    wget https://downloads.rclone.org/"${RCLONE_VER}"/rclone-"${RCLONE_VER}"-linux-arm64.zip
+    unzip rclone-"${RCLONE_VER}"-linux-arm64.zip
+    chmod +x rclone-"${RCLONE_VER}"-linux-arm64/rclone
+    mv rclone-"${RCLONE_VER}"-linux-arm64/rclone rclone
   fi
 
   local cmd="docker build --pull -t $DOCKER_REGISTRY/$IMG:$TAG ."
   echo $cmd; $cmd
 
-  rm -rf rclone-"${RCLONE_VER}"-linux-amd64*
+  rm -rf rclone-"${RCLONE_VER}"-linux-arm64*
   rm rclone
   popd
 }

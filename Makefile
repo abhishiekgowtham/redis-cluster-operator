@@ -17,16 +17,16 @@ all: check build
 build: test build-go build-image
 
 build-go:
-	GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
+	GO111MODULE=on CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build \
 	-ldflags "-X github.com/$(REPO)/version.Version=$(VERSION) -X github.com/$(REPO)/version.GitSHA=$(GIT_SHA)" \
-	-o $(BIN_DIR)/$(PROJECT_NAME)-linux-amd64 cmd/manager/main.go
-	GO111MODULE=on CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build \
+	-o $(BIN_DIR)/$(PROJECT_NAME)-linux-arm64 cmd/manager/main.go
+	GO111MODULE=on CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build \
 	-ldflags "-X github.com/$(REPO)/version.Version=$(VERSION) -X github.com/$(REPO)/version.GitSHA=$(GIT_SHA)" \
-	-o $(BIN_DIR)/$(PROJECT_NAME)-darwin-amd64 cmd/manager/main.go
+	-o $(BIN_DIR)/$(PROJECT_NAME)-darwin-arm64 cmd/manager/main.go
 
 build-image:
-	docker build --build-arg VERSION=$(VERSION) --build-arg GIT_SHA=$(GIT_SHA) -t $(ALTREPO):$(VERSION) .
-	docker tag $(ALTREPO):$(VERSION) $(ALTREPO):latest
+	docker build --build-arg VERSION=$(VERSION) --build-arg GIT_SHA=$(GIT_SHA) -t operator-test:v0.2.5 .
+	docker tag operator-test:v0.2.5 abhishiekgowtham/redis-operator-test:v0.2.5
 
 build-e2e:
 	docker build -t $(E2EALTREPO):$(VERSION)  -f test/e2e/Dockerfile .
