@@ -26,9 +26,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/arm64
           push: true
-          tags: tykio/redis-cluster-operator:latest
+          tags: tykio/redis-cluster-operator:v0.2.5
       
       
 
